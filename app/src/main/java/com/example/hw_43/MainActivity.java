@@ -1,6 +1,8 @@
 package com.example.hw_43;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -29,21 +31,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         rollButton = findViewById(R.id.button2);
-        testText = findViewById(R.id.test);
 
         imgOne  = findViewById(R.id.imgOne);
         imgTwo  = findViewById(R.id.imgTwo);
-//        imgThree  = findViewById(R.id.imgThree);
-//        imgFour = findViewById(R.id.imgFour);
+        imgThree  = findViewById(R.id.imgThree);
+        imgFour = findViewById(R.id.imgFour);
+        imgFive = findViewById(R.id.imgFive);
 
-        cs[0] = new Dice(imgOne);
-        cs[1] = new Dice(imgTwo);
+
+        cs[0] = new Dice(imgOne, this);
+        cs[1] = new Dice(imgTwo, this);
+        cs[2] = new Dice(imgThree, this);
+        cs[3] = new Dice(imgFour, this);
+        cs[4] = new Dice(imgFive, this);
+
 
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                testText.setText("Button clicked");
-                cs[0].changeFace();
+                makeDiceThreads();
             }
         });
 
@@ -60,7 +66,5 @@ public class MainActivity extends AppCompatActivity {
             catch (InterruptedException ex) {;}
         }
     }
-
-
 
 }
