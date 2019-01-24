@@ -16,22 +16,28 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+/**
+ * handles Dice UI thread and creation of dice threads
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Dice[] cs = new Dice[5];
     Button rollButton;
     TextView testText;
-    ImageView imgOne, imgTwo, imgThree, imgFour, imgFive, imgSix;
-
+    ImageView imgOne, imgTwo, imgThree, imgFour, imgFive;
 
 
     @Override
+    /**
+     * start dice and call make threads
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         rollButton = findViewById(R.id.button2);
 
+        //connect images
         imgOne  = findViewById(R.id.imgOne);
         imgTwo  = findViewById(R.id.imgTwo);
         imgThree  = findViewById(R.id.imgThree);
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         imgFive = findViewById(R.id.imgFive);
 
 
+        //create dice
         cs[0] = new Dice(imgOne, this);
         cs[1] = new Dice(imgTwo, this);
         cs[2] = new Dice(imgThree, this);
@@ -46,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         cs[4] = new Dice(imgFive, this);
 
 
+        //listen for roll button click to start threads
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * create threads that call on dice objs
+     */
     public void makeDiceThreads()
     {
         for (int i=0; i< cs.length; i++) {

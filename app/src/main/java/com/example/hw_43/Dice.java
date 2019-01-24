@@ -6,6 +6,9 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
+/**
+ * dice class manages a single die and its rolls
+ */
 public class Dice implements Runnable
 {
     private ImageView diceView;
@@ -17,6 +20,9 @@ public class Dice implements Runnable
         activity = newActivity;
     }
 
+    /**
+     * runs for a minimum of 10 * 300 milliseconds (10 flips of face)
+     */
     public void run() {
         int stop = rand.nextInt(20);
         stop += 10;
@@ -34,7 +40,9 @@ public class Dice implements Runnable
     }
 
 
-
+    /**
+     * asks UI thread to update dice images based on randomized face appearance
+     */
     public void changeFace() {
         final int randFace = rand.nextInt(6) + 1;
         //randFace++; //make range turn out to 1-6
